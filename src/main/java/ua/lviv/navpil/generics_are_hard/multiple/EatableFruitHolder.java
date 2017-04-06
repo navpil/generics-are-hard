@@ -1,6 +1,7 @@
 package ua.lviv.navpil.generics_are_hard.multiple;
 
-import ua.lviv.navpil.generics_are_hard.voids.Holder;
+import ua.lviv.navpil.generics_are_hard.multiple.model.Eatable;
+import ua.lviv.navpil.generics_are_hard.multiple.model.Fruit;
 
 public class EatableFruitHolder<T extends Fruit & Eatable> {
 
@@ -16,6 +17,10 @@ public class EatableFruitHolder<T extends Fruit & Eatable> {
         //But how can I hold anything?, see line 10
 //        this.alternativeFruit = new Apple();
 
+    }
+
+    public T getEatableFruit() {
+        return eatableFruit;
     }
 
 

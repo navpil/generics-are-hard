@@ -1,5 +1,8 @@
 package ua.lviv.navpil.generics_are_hard.multiple;
 
+import ua.lviv.navpil.generics_are_hard.multiple.model.Apple;
+import ua.lviv.navpil.generics_are_hard.multiple.model.Banana;
+
 public class MultipleMain {
 
     public static void main(String[] args) {

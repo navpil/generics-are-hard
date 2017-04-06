@@ -1,7 +1,7 @@
 package ua.lviv.navpil.generics_are_hard.bridge_methods;
 
 public class IntegerItem extends Item<Integer> {
-    
+
     public IntegerItem(Integer value) {
         super(value);
     }

@@ -1,6 +1,6 @@
 package ua.lviv.navpil.generics_are_hard.wildcards;
 
-import ua.lviv.navpil.generics_are_hard.voids.Holder;
+import ua.lviv.navpil.generics_are_hard.Holder;
 
 public class AnimalHolderCallback implements Callback<Holder<Animal>> {
     @Override
