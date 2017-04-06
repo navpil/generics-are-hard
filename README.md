@@ -33,7 +33,9 @@ one. However this one is easily explainable.
 
 <details>
 <summary>Can you guess why?</summary>
-When EatableFruitHolder is instantiated it is parametrized with Apple and T becomes Apple but we cant know anything about the type T in the constructor itself
+When EatableFruitHolder is instantiated it is parametrized with Apple and T becomes Apple but we cant know anything 
+about the type T in the constructor itself. So imagine we parametrized it with Banana, and still try to push Apple
+as an alternative fruit. That won't work, because apples are not bananas.
 </details>
 
 `EatableFruitHolder` does not solve the `FoodEater` problem.
