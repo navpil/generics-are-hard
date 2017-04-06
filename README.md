@@ -29,8 +29,12 @@ a reference to such object. The workaround is to use two fields, one of type `Ea
 the passed object in both places.
 
 `EatableFruitHolder` is a bit different - it can hold the reference to the passed object, but can't create the alternative
-one. However this one is easily explainable. Can you guess why? See [link source code](When EatableFruitHolder is instantiated it is parametrized with Apple and T becomes Apple but we cant know anything about the type T in the constructor itself)
-for explanation.
+one. However this one is easily explainable. 
+
+<details>
+<summary>Can you guess why?</summary>
+When EatableFruitHolder is instantiated it is parametrized with Apple and T becomes Apple but we cant know anything about the type T in the constructor itself
+</details>
 
 `EatableFruitHolder` does not solve the `FoodEater` problem.
 
