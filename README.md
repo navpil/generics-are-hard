@@ -1,6 +1,9 @@
 # generics-are-hard
 
-Some sample code with generics, which are hard. Explanation about each package can be found below
+Some sample code with generics, which are hard. Explanation about each package can be found below.
+
+I also highly suggest reading [Java Generics Tutorial](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
+and section Generics in Effective Java by Joshua Bloch.
 
 ## basics
 
@@ -15,7 +18,7 @@ This is just a fun fact that you can parametrize with Void to avoid (see the pun
 
 Bridge methods are explained in [Java Tutorials](https://docs.oracle.com/javase/tutorial/java/generics/bridgeMethods.html)
  
-They rarely cause troubles, but IntegerItem illustrates what can happen
+They rarely cause troubles, but `IntegerItem` illustrates what can happen
   
 ## multiple
 
@@ -38,10 +41,13 @@ one. However this one is easily explainable.
 
 <details>
 <summary>Can you guess why?</summary>
-When EatableFruitHolder is instantiated it is parametrized with Apple and T becomes Apple but we cant know anything 
+When EatableFruitHolder is instantiated it is parametrized with Apple and T becomes Apple but we cannot know anything 
 about the type T in the constructor itself. So imagine we parametrized it with Banana, and still try to push Apple
-as an alternative fruit. That won't work, because apples are not bananas.
+as an alternative fruit. That won't work, because apples are not bananas. In this particular case you may use instanceof
+and casts, but this is a slippery path.
 </details>
+
+What is not easily explainable is why method `getEatableFruitOrAppleHolder` does not compile.
 
 `EatableFruitHolder` does not solve the `FoodEater` problem.
 

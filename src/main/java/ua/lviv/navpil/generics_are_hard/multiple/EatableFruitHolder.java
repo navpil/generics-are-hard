@@ -14,7 +14,7 @@ public class EatableFruitHolder<T extends Fruit & Eatable> {
     public EatableFruitHolder(T eatableFruit) {
         this.eatableFruit = eatableFruit;
         //This does not compile because I can parametrize the class with whatever I want, e.g. Banana,
-        //But how can I hold anything?, see line 10
+        //But how can I hold anything?, see line 11
 //        this.alternativeFruit = new Apple();
 
     }
@@ -23,5 +23,24 @@ public class EatableFruitHolder<T extends Fruit & Eatable> {
         return eatableFruit;
     }
 
+    //So maybe let's try to return apple as alternative always? What should be the signature?
+
+    //This won't compile - F can be anything
+//    public <F extends Fruit & Eatable> F getEatableFruitOrApple(boolean eatApple) {
+//        if (eatApple) {
+//            return new Apple();
+//        } else {
+//            return eatableFruit;
+//        }
+//    }
+
+    //This one does not compile badly
+//    public Holder<? extends Fruit & Eatable> getEatableFruitOrAppleHolder(boolean eatApple) {
+//        if (eatApple) {
+//            return new Holder<>(new Apple());
+//        } else {
+//            return new Holder<>(eatableFruit);
+//        }
+//    }
 
 }

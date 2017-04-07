@@ -4,4 +4,8 @@ public class Holder<T> {
 
     public T item;
 
+    public Holder(T item) {
+        this.item = item;
+    }
+
 }
