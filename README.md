@@ -2,6 +2,11 @@
 
 Some sample code with generics, which are hard. Explanation about each package can be found below
 
+## basics
+
+Generics work only compile time, there are no generics runtime. This is called "erasure". Most common problems is that 
+ you cannot find the `TypeOfGeneric` runtime and you cannot do the `GenericOverload` of the methods.
+
 ## voids
 
 This is just a fun fact that you can parametrize with Void to avoid (see the pun?) putting any objects into the Holder
@@ -52,8 +57,40 @@ However be aware that generics are reified anyway - there is no magic, so please
 
 ## wildcards
 
-TODO, this one is a bit complicated
+Wildcards are a bit tricky and you'd better avoid them.
+
+You should always prefer `<T extends MyClass>` over `<? extends MyClass>` if possible.
+
+For example second signature is preferable:
+
+ - `public void processWildcardAnimal(Holder<? extends Animal> animal)`
+ - `public <T extends Animal> void processExactAnimal(Holder<T> animal)`
+
+It's explained in the calls for `getWildcardHolder()` and `getTHolder()`. It's not easy to use the first method.
+
+Syntax `public <? extends Animal> getAnimal()` is impossible and `public <T extends Animal> T getAnimal()` 
+makes no sense unless you pass something in the method - class or instance (see `getAnimal()` overloads).
+
+`processExactlyWithHolderCallback` requires to use type T, but `processWildcardWithHolderCallback` overloads would 
+ accept anything into callback.
+ 
+`processExactlyWithCallback` does not compile but it's easy to see why - you can parametrize it with everything, for 
+example `Dog` so you can't use `Cat` inside (similar to alternative fruit in `EatableFruitHolder`).
+
+However I could not find the explanation why 
+        
+        public void processWildcardWithCallback(Callback<? super Animal> callback)
+
+compiles and 
+
+        public <T super Animal> void processExactSuperWithCallback(Callback<T> callback) {
+        
+does not. Can you?
 
 ## class handler
 
-TODO, this one is a bit complicated
+On the contrary to the wildcards section, it seems impossible to avoid `<? extends Handler>` syntax when you're dealing
+with classes themselves. Let's say that there is some `HandlerFactory` which would return us the Handler class we should
+use (`Handler` has two children: `SimpleHandler` and `ComplicatedHandler`). You'd like to instantiate those later.
+
+One of the possible workaround is to use the `Constructor` object, which would keep the wildcard inside.

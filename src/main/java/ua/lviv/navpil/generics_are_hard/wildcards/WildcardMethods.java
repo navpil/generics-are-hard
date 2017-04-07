@@ -14,6 +14,15 @@ public class WildcardMethods {
         processExactAnimal( getCatHolder() );
         processWildcardAnimal( getCatHolder() );
 
+        Holder<? extends Animal> wildcardHolder = getWildcardHolder();
+        //Error: incompatible types: ua.lviv.navpil.generics_are_hard.wildcards.Cat cannot be converted to capture#1 of ? extends ua.lviv.navpil.generics_are_hard.wildcards.Animal
+//        wildcardHolder.item = new Cat();
+
+        Holder<Animal> tHolder = getTHolder();
+        //OK:
+        tHolder.item = new Cat();
+        tHolder.item = new Animal();
+
         processWildcardWithHolderCallback( new Callback<Holder<? extends Animal>>() {
             @Override
             public void success(Holder<? extends Animal> holder) {
@@ -31,12 +40,55 @@ public class WildcardMethods {
 
     }
 
+    public <T extends Animal> void processExactAnimal(Holder<T> animal) {
+        System.out.println("I'm processing the exact animal " + animal.item);
+    }
+
+    public void processWildcardAnimal(Holder<? extends Animal> animal) {
+        System.out.println("I'm processing the exact animal " + animal.item);
+    }
+
+    public Holder<? extends Animal> getWildcardHolder() {
+        return new Holder<>();
+    }
+
+    public <T extends Animal> Holder<T> getTHolder() {
+        return new Holder<>();
+    }
+
+    //impossible code
+//    public <? extends Animal> getAnimal();
+//    public <? extends Animal> Animal getAnimal();
+
+    public <T extends Animal> T getAnimal() throws IllegalAccessException, InstantiationException {
+        //We can't instantiate T here
+        T t = null;
+        return t;
+    }
+
+    public <T extends Animal> T getAnimal(Class<T> tClass) throws IllegalAccessException, InstantiationException {
+        //We can instantiate T only by reflection
+        return tClass.newInstance();
+    }
+
+    public <T extends Animal> T getAnimal(T animal) throws IllegalAccessException, InstantiationException {
+        //We can return same animal which is passed
+        return animal;
+    }
+
     public <T extends Animal> void processExactlyWithHolderCallback(Callback<Holder<T>> callback, T o) {
+        //Does not work - we parametrize with something, which does not need to be a cat
+//        callback.success( getCatHolder() );
         callback.success( getHolder(o) );
     }
 
     public void processWildcardWithHolderCallback(Callback<Holder<? extends Animal>> callback) {
         callback.success( getCatHolder() );
+        callback.success( getWildcardHolder() );
+    }
+
+    public void processWildcardWithHolderCallback(Callback<Holder<? extends Animal>> callback, Holder<? extends Animal> holder) {
+        callback.success( holder );
     }
 
 ////This does not compile, because we can parametrize with anything, for example Dog.
@@ -51,16 +103,8 @@ public class WildcardMethods {
     }
 
     //And this not
-//    public <T super Animal> void processWildcardWithCallback2(Callback<T> callback) {
+//    public <T super Animal> void processExactSuperWithCallback(Callback<T> callback) {
 //    }
-
-    public <T extends Animal> void processExactAnimal(Holder<T> animal) {
-        System.out.println("I'm processing the exact animal " + animal.item);
-    }
-
-    public void processWildcardAnimal(Holder<? extends Animal> animal) {
-        System.out.println("I'm processing the exact animal " + animal.item);
-    }
 
 
     public Holder<Cat> getCatHolder() {
