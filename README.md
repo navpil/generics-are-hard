@@ -1,4 +1,4 @@
-# generics-are-hard
+# Generics Are Hard
 
 Some sample code with generics, which are hard. Explanation about each package can be found below.
 
