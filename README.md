@@ -59,7 +59,7 @@ This is a very clever technique to store the reference to the parametrized class
 `List<String>` and `List<Integer>` with this technique, because of erasure. Now have a look at `TypeReference` and how
 it works in `TypeReferenceFavourites`. This is not very straightforward, but it's nice and it works.
 
-However be aware that generics are reified anyway - there is no magic, so please read comments for `TypeReferencesAreNotPerfect`.
+However be aware that generics are erased anyway - there is no magic, so please read comments for `TypeReferencesAreNotPerfect`.
 
 ## wildcards
 
