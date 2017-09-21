@@ -45,7 +45,7 @@ public class WildcardMethods {
     }
 
     public void processWildcardAnimal(Holder<? extends Animal> animal) {
-        System.out.println("I'm processing the exact animal " + animal.item);
+        System.out.println("I'm processing the wildcard animal " + animal.item);
     }
 
     public Holder<? extends Animal> getWildcardHolder() {

@@ -13,7 +13,7 @@ public class GenericOverload {
 //        return people.isEmpty() ? 0 : people.stream().map(Person::getAge).reduce((a, b) -> a + b).orElse(0) / people.size();
 //    }
 
-    public int findMedianPArsonAge(List<Person> people) {
+    public int findMedianPersonAge(List<Person> people) {
         return people.isEmpty() ? 0 : people.stream().map(Person::getAge).reduce((a, b) -> a + b).orElse(0) / people.size();
     }
 
