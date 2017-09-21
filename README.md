@@ -100,3 +100,15 @@ with classes themselves. Let's say that there is some `HandlerFactory` which wou
 use (`Handler` has two children: `SimpleHandler` and `ComplicatedHandler`). You'd like to instantiate those later.
 
 One of the possible workaround is to use the `Constructor` object, which would keep the wildcard inside.
+
+## deep inheritance
+
+The `Problem.java` describes what I want to achieve. In particular I want to be able to save the object which is down
+in the deep inheritance hierarchy.
+
+When inheritance is two layers, there is a natural way of writing generics as described in `NotReallyASolution.java`.
+
+The Solution.java shows how to solve the problem.
+
+Please note, however, that we can parametrize PersonDao with Freshman and behavior is different for two seemingly the
+same `PersonDao<Freshman>`. We can't prevent PersonDao be _not_ parametrized with FreshmanDao. Or can we?
