@@ -112,3 +112,11 @@ The Solution.java shows how to solve the problem.
 
 Please note, however, that we can parametrize PersonDao with Freshman and behavior is different for two seemingly the
 same `PersonDao<Freshman>`. We can't prevent PersonDao be _not_ parametrized with FreshmanDao. Or can we?
+
+## builder
+
+Builder, generics and hierarchy is hard. I describe a problem in a `Problem.java`. I show the usual solution for the
+two-level hierarchy in the `NotReallyASolution.java`. Why it's not really a solution is described in the class.
+
+As you see, there is no `Solution.java`. It's yet to be written. The naive approach of simply merging it with a
+'deep inheritance' Solution just did not work.
