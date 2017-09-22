@@ -11,4 +11,6 @@ public class Holder<T> {
         this.item = item;
     }
 
+    public T getItem() {return item;}
+
 }

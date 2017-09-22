@@ -4,6 +4,7 @@ import ua.lviv.navpil.generics_are_hard.builder.model.Being;
 import ua.lviv.navpil.generics_are_hard.builder.model.Person;
 import ua.lviv.navpil.generics_are_hard.builder.model.Student;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CuriouslyRecurringPatternSolution {
@@ -23,16 +24,35 @@ public class CuriouslyRecurringPatternSolution {
         Student s5 = new StudentBuilder<>().withType("Human").withName("Paul").withYear(1).build();
         Student s6 = new StudentBuilder<>().withYear(1).withType("Human").withName("Paul").build();
 
-        //wild guess...
-        Student build = new StudentBuilder<FinalBuilder>().withYear(1).withType("Human").withName("Paul").build();
-
         //However I still did not find out what is the StudentBuilder parametrized with. IntelliJ is of no help
 //        StudentBuilder<SELF> selfStudentBuilder = new StudentBuilder<>();//????
+
+        //We can workaround the problem with using one more class:
+        class FinalBuilder extends StudentBuilder<FinalBuilder> {}
+
+        try {
+            Student build = new StudentBuilder<FinalBuilder>().withYear(1).withType("Human").withName("Paul").build();
+            //The above code compiles, but if you have run the method, you'll notice that it will throw a ClassCastException
+            //In case you're interested why there was a ClassCast, please have a look at basics/BeCarefulWithRawTypes.java
+            //and also note, that ClassCast is not thrown in the self() method.
+
+            //Funny thing is that the above code actually works fine in the IntelliJ's 'evaluate expression'
+            
+            throw new AssertionError("The above code throws the ClassCastException");
+        } catch (ClassCastException e) {
+            LOG.log(Level.WARNING,"Never ignore exceptions in your production code. ", e);
+        }
+
+        //But this works:
+        Student build = new FinalBuilder().withYear(1).withType("Human").withName("Paul").build();
+
+        //Unfortunately there is no way to anonymize the FinalBuilder class
+//        Student build = new StudentBuilder<StudentBuilder>(){
+//        }.withYear(1).withType("Human").withName("Paul").build();
+
+        //However the question remains: how to actually assign new StudentBuilder<>() to some variable without any
+        //additional class?
     }
-
-    // vom: perhaps that what it is parametrized with?
-    public static class FinalBuilder extends StudentBuilder<FinalBuilder> {}
-
 
     public static class BeingBuilder<SELF extends BeingBuilder<SELF>> {
 

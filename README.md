@@ -10,6 +10,9 @@ and section Generics in Effective Java by Joshua Bloch.
 Generics work only compile time, there are no generics runtime. This is called "erasure". Most common problems is that 
  you cannot find the `TypeOfGeneric` runtime and you cannot do the `GenericOverload` of the methods.
 
+Please `BeCarefulWithRawtypes.java` - this can bite you in some unexpected places. The example there is simple, but you
+ should understand very well where the casts are actually done.
+
 ## voids
 
 This is just a fun fact that you can parametrize with Void to avoid (see the pun?) putting any objects into the Holder
@@ -124,3 +127,5 @@ The naive approach of simply merging it with a 'deep inheritance' Solution just 
 What we need is Curiously Recurrring Template Pattern (or, in other words `Comparable<T extends Comparable<T>>`.
 Check this out in `CuriouslyRecurringPatternSolution.java`. There is still one problem with this solution: I don't know
 what the Builder is actually parametrized with.
+
+There is a discussion how to workaround the issue with additional class.
