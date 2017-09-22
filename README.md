@@ -118,5 +118,9 @@ same `PersonDao<Freshman>`. We can't prevent PersonDao be _not_ parametrized wit
 Builder, generics and hierarchy is hard. I describe a problem in a `Problem.java`. I show the usual solution for the
 two-level hierarchy in the `NotReallyASolution.java`. Why it's not really a solution is described in the class.
 
-As you see, there is no `Solution.java`. It's yet to be written. The naive approach of simply merging it with a
-'deep inheritance' Solution just did not work.
+The naive approach of simply merging it with a 'deep inheritance' Solution just did not work as shown in the
+`NaiveApproach.java`, though it was close.
+
+What we need is Curiously Recurrring Template Pattern (or, in other words `Comparable<T extends Comparable<T>>`.
+Check this out in `CuriouslyRecurringPatternSolution.java`. There is still one problem with this solution: I don't know
+what the Builder is actually parametrized with.
