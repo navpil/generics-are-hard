@@ -23,7 +23,7 @@ public class NotReallyASolution {
     }
 
 
-    public static class BeingBuilder<SELF extends BeingBuilder<SELF>> {
+    public static class BeingBuilder<SELF extends BeingBuilder> {
 
         protected String type;
 
