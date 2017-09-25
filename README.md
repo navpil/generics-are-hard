@@ -10,7 +10,7 @@ and section Generics in Effective Java by Joshua Bloch.
 Generics work only compile time, there are no generics runtime. This is called "erasure". Most common problems is that 
  you cannot find the `TypeOfGeneric` runtime and you cannot do the `GenericOverload` of the methods.
 
-Please `BeCarefulWithRawtypes.java` - this can bite you in some unexpected places. The example there is simple, but you
+Please `BeCarefulWithRawtypes` - this can bite you in some unexpected places. The example there is simple, but you
  should understand very well where the casts are actually done.
 
 ## voids
@@ -106,26 +106,34 @@ One of the possible workaround is to use the `Constructor` object, which would k
 
 ## deep inheritance
 
-The `Problem.java` describes what I want to achieve. In particular I want to be able to save the object which is down
+The `Problem` describes what I want to achieve. In particular I want to be able to save the object which is down
 in the deep inheritance hierarchy.
 
-When inheritance is two layers, there is a natural way of writing generics as described in `NotReallyASolution.java`.
+When inheritance is two layers, there is a natural way of writing generics which is `NotReallyASolution`.
 
-The Solution.java shows how to solve the problem.
+`Solution` shows how to solve the problem.
 
-Please note, however, that we can parametrize PersonDao with Freshman and behavior is different for two seemingly the
-same `PersonDao<Freshman>`. We can't prevent PersonDao be _not_ parametrized with FreshmanDao. Or can we?
+Please note, however, that we can parametrize `PersonDao` with `Freshman` and behavior is different for two seemingly the
+same `PersonDao<Freshman>`. We can't prevent `PersonDao` be _not_ parametrized with `FreshmanDao`. Or can we?
 
 ## builder
 
-Builder, generics and hierarchy is hard. I describe a problem in a `Problem.java`. I show the usual solution for the
-two-level hierarchy in the `NotReallyASolution.java`. Why it's not really a solution is described in the class.
+Builder, generics and hierarchy is hard. I describe a problem in a `Problem`. I show the usual solution for the
+two-level hierarchy in the `NotReallyASolution`. Why it's not really a solution is described in the class.
 
 The naive approach of simply merging it with a 'deep inheritance' Solution just did not work as shown in the
-`NaiveApproach.java`, though it was close.
+`NaiveApproach`, though it was close.
 
 What we need is Curiously Recurrring Template Pattern (or, in other words `Comparable<T extends Comparable<T>>`.
-Check this out in `CuriouslyRecurringPatternSolution.java`. There is still one problem with this solution: I don't know
+Check this out in `CuriouslyRecurringPatternSolution`. There is still one problem with this solution: I don't know
 what the Builder is actually parametrized with.
 
 There is a discussion how to workaround the issue with additional class.
+
+## fun
+
+I couln't come up with the better name for this package. There are some fun examples through this project, such as
+`StudentBuilder<StudentBuilder<StudentBuilder<StudentBuilder>>> studentBuilder = new StudentBuilder<>()`, however these
+do not belong to any logical group.
+
+Can you guess which `compareTo` methods compile in `NestedComparable`?
