@@ -51,7 +51,24 @@ public class CuriouslyRecurringPatternSolution {
 //        }.withYear(1).withType("Human").withName("Paul").build();
 
         //However the question remains: how to actually assign new StudentBuilder<>() to some variable without any
-        //additional class?
+        //additional class?..
+
+        //Question mark is our savior.
+        StudentBuilder<?> b1 = new StudentBuilder<>();
+        Student st1 = b1.withType("Human").withName("Paul").withYear(1).build();
+        LOG.info("Question marks can save us");
+
+        //Diamond operator can be removed alltogether:
+        StudentBuilder<?> b2 = new StudentBuilder();
+        Student st2 = b2.withType("Human").withName("Paul").withYear(1).build();
+        LOG.info("And diamonds can be removed as well and everything works");
+
+        //But we can't get along without the question mark:
+        StudentBuilder b3 = new StudentBuilder();
+        //Does not compile:
+//        Student st3 = b3.withType("Human").withName("Paul").withYear(1).build();
+
+        //We will never find out what was inside the diamond operator
     }
 
     public static class BeingBuilder<SELF extends BeingBuilder<SELF>> {

@@ -128,7 +128,7 @@ What we need is Curiously Recurrring Template Pattern (or, in other words `Compa
 Check this out in `CuriouslyRecurringPatternSolution`. There is still one problem with this solution: I don't know
 what the Builder is actually parametrized with.
 
-There is a discussion how to workaround the issue with additional class.
+There is a discussion how to workaround the issue with additional class and how can a question mark become our savior.
 
 ## fun
 
@@ -137,3 +137,5 @@ I couln't come up with the better name for this package. There are some fun exam
 do not belong to any logical group.
 
 Can you guess which `compareTo` methods compile in `NestedComparable`?
+
+Do you know how `RecursiveGenerics` look like and behave?
