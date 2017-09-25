@@ -1,5 +1,7 @@
 package ua.lviv.navpil.generics_are_hard.multiple;
 
+import ua.lviv.navpil.generics_are_hard.Holder;
+import ua.lviv.navpil.generics_are_hard.multiple.model.Apple;
 import ua.lviv.navpil.generics_are_hard.multiple.model.Eatable;
 import ua.lviv.navpil.generics_are_hard.multiple.model.Fruit;
 

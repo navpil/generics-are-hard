@@ -1,4 +1,4 @@
-package ua.lviv.navpil.generics_are_hard.voids;
+package ua.lviv.navpil.generics_are_hard.fun;
 
 import ua.lviv.navpil.generics_are_hard.Holder;
 

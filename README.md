@@ -13,10 +13,6 @@ Generics work only compile time, there are no generics runtime. This is called "
 Please `BeCarefulWithRawtypes` - this can bite you in some unexpected places. The example there is simple, but you
  should understand very well where the casts are actually done.
 
-## voids
-
-This is just a fun fact that you can parametrize with Void to avoid (see the pun?) putting any objects into the Holder
-
 ## bridge methods
 
 Bridge methods are explained in [Java Tutorials](https://docs.oracle.com/javase/tutorial/java/generics/bridgeMethods.html)
@@ -139,3 +135,5 @@ do not belong to any logical group.
 Can you guess which `compareTo` methods compile in `NestedComparable`?
 
 Do you know how `Recurring` generics look like and behave?
+
+You can parametrize with `Void` to avoid (see the pun?) putting any objects into the Holder.
