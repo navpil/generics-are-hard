@@ -138,4 +138,4 @@ do not belong to any logical group.
 
 Can you guess which `compareTo` methods compile in `NestedComparable`?
 
-Do you know how `RecursiveGenerics` look like and behave?
+Do you know how `Recurring` generics look like and behave?

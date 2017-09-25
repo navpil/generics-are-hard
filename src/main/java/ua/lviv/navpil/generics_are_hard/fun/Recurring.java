@@ -1,10 +1,6 @@
 package ua.lviv.navpil.generics_are_hard.fun;
 
-public class RecursiveGenerics {
-
-    public static class Recurring<T extends Recurring<T>> {
-        void doSomething(){}
-    }
+public class Recurring<T extends Recurring<T>>{
 
     public static void main(String[] args) {
 
@@ -41,10 +37,12 @@ public class RecursiveGenerics {
 //        Recurring<Recurring<?>> r4 = new Recurring<>();//Does not compile
 
         /*
-        No, questions can't be inside because... I don't know why. It makes no sense, probably.
+        No, questions can't be inside because... I don't know why. Probably it just makes no sense.
 
         This examples brings us nowhere. It hardly teaches us anything new about generics. Except that they are hard.
          */
     }
+
+    void doSomething(){}
 
 }
