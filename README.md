@@ -21,7 +21,7 @@ This is just a fun fact that you can parametrize with Void to avoid (see the pun
 
 Bridge methods are explained in [Java Tutorials](https://docs.oracle.com/javase/tutorial/java/generics/bridgeMethods.html)
  
-They rarely cause troubles, but `IntegerItem` illustrates what can happen
+They rarely cause troubles, but `ComparablePerson` illustrates what can happen.
   
 ## multiple
 
