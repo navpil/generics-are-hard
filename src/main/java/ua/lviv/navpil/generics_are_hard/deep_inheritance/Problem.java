@@ -14,26 +14,30 @@ public class Problem {
 
         /*
          * I want a method which will accept the Dao and a thing it should save.
-         * However nothing works
+         *
+         * So for example I want to pass Person and PersonDao and have the Person saved,
+         * If I pass Freshman and a FreshmanDao I want a Freshman be saved.
+         *
+         * But nothing works
          */
-        PersonDao freshmanDao = new FreshmanDao();
+        PersonDao personDao = new FreshmanDao();
 
         /*
-         * However since methods are not overloads, correct methods are not called.
+         * Since methods are not overloads, correct methods are not called.
          *
          * The "Saving freshman" will not appear.
          */
-        saveWithDaoNoGenerics(new Freshman(), freshmanDao);
+        saveWithDaoNoGenerics(new Freshman(), personDao);
 
         /*
          * Even if we try generics, it just won't work
          */
-        saveWithDao(new Freshman(), freshmanDao);
+        saveWithDao(new Freshman(), personDao);
 
         /*
          * Even more generics won't work
          */
-        saveWithDaoReallyGenerified(new Freshman(), freshmanDao);
+        saveWithDaoReallyGenerified(new Freshman(), personDao);
 
         /*
          * And if you think that passing all correct parameters will work, you're wrong
