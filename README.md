@@ -137,3 +137,5 @@ Can you guess which `compareTo` methods compile in `NestedComparable`?
 Do you know how `Recurring` generics look like and behave?
 
 You can parametrize with `Void` to avoid (see the pun?) putting any objects into the Holder.
+
+Isn't it fun that sometimes `XLintFails` to prevent you from ClassCastExceptions runtime?
