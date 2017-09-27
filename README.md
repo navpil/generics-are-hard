@@ -7,11 +7,17 @@ and section Generics in Effective Java by Joshua Bloch.
 
 ## basics
 
+First you may look at `WhyDoWeNeedGenerics` at all. `Holders` contain both non-generic and a generic versions, which are
+not too different, though the generic one is easier to use.
+
 Generics work only compile time, there are no generics runtime. This is called "erasure". Most common problems is that 
- you cannot find the `TypeOfGeneric` runtime and you cannot do the `GenericOverload` of the methods.
+ you cannot find the `TypeOfGeneric` runtime and you cannot do the `GenericOverload` of the methods. You can't use
+ generics in 'catch' clause when catching `Exceptions`
 
 Please `BeCarefulWithRawtypes` - this can bite you in some unexpected places. The example there is simple, but you
  should understand very well where the casts are actually done.
+
+See how different parametrized types can be cast to each other in `Assignments`.
 
 ## bridge methods
 
@@ -139,3 +145,5 @@ Do you know how `Recurring` generics look like and behave?
 You can parametrize with `Void` to avoid (see the pun?) putting any objects into the Holder.
 
 Isn't it fun that sometimes `XLintFails` to prevent you from ClassCastExceptions runtime?
+
+I don't quite understand why `SometimesInheritanceFails`.
