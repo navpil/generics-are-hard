@@ -60,6 +60,14 @@ public class Assignments {
         Object item = genericHolder.getItem();
 
 
+        //You can put all of the 'subclasses' when Holder is parametrized with 'super' (upper bound), but not superclasses
+        // Doesn't it sound a bit backward?
+        GenericCreatureHolder<? super Mammal> mammalSuperHolder = new GenericCreatureHolder<>(new Cat());//because Cat is Mammal
+        mammalSuperHolder.setCreature(new Mammal()); //Legal, because Mammal is Mammal
+        mammalSuperHolder.setCreature(new Cat()); //Legal, because Cat is Mammal
+//        mammalSuperHolder.setCreature(new Creature());//Illegal - Creature is not Mammal.
+
+
         //Raw types also can be used here, though it is discouraged...
         GenericCreatureHolder rawHolder = catHolder;
         Creature c3 = rawHolder.getCreature();
