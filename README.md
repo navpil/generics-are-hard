@@ -10,9 +10,12 @@ and section Generics in Effective Java by Joshua Bloch.
 First you may look at `WhyDoWeNeedGenerics` at all. `Holders` contain both non-generic and a generic versions, which are
 not too different, though the generic one is easier to use.
 
-Generics work only compile time, there are no generics runtime. This is called "erasure". Most common problems is that 
+Generics work only compile time, there are no generics runtime. This is called "erasure". Most common problems is that
  you cannot find the `TypeOfGeneric` runtime and you cannot do the `GenericOverload` of the methods. You can't use
  generics in 'catch' clause when catching `Exceptions`
+
+There is a common confusion about `DifferencesBetweenGenericTypes`, such as what is the difference between List<T> and
+List<?>.
 
 Please `BeCarefulWithRawtypes` - this can bite you in some unexpected places. The example there is simple, but you
  should understand very well where the casts are actually done.
@@ -131,6 +134,11 @@ Check this out in `CuriouslyRecurringPatternSolution`. There is still one proble
 what the Builder is actually parametrized with.
 
 There is a discussion how to workaround the issue with additional class and how can a question mark become our savior.
+
+## comparables
+
+`Comparable<T>` is one of my favourite interfaces. Please check how to actually `CompareComparables` and probably you
+will get a bit amused (I was when I wrote the example).
 
 ## fun
 
