@@ -55,7 +55,9 @@ as an alternative fruit. That won't work, because apples are not bananas. In thi
 and casts, but this is a slippery path.
 </details>
 
-What is not easily explainable is why method `getEatableFruitOrAppleHolder` does not compile.
+What is not easily explainable is why method `getEatableFruitOrAppleHolder` does not compile... well, actually this one
+does not compile, because wildcards do not support multiple bounds. So it does not compile, because it does not compile.
+But why doesn't it?
 
 `EatableFruitHolder` does not solve the `FoodEater` problem.
 
@@ -71,19 +73,21 @@ However be aware that generics are erased anyway - there is no magic, so please 
 
 ## wildcards
 
-Wildcards are a bit tricky and you'd better avoid them.
+`WildcardsMethods` are tricky.
 
-You should always prefer `<T extends MyClass>` over `<? extends MyClass>` if possible.
+You should prefer `<T extends MyClass>` over `<? extends MyClass>` if possible.
 
 For example second signature is preferable:
 
  - `public void processWildcardAnimal(Holder<? extends Animal> animal)`
  - `public <T extends Animal> void processExactAnimal(Holder<T> animal)`
 
-It's explained in the calls for `getWildcardHolder()` and `getTHolder()`. It's not easy to use the first method.
+It's explained in several places why.
 
 Syntax `public <? extends Animal> getAnimal()` is impossible and `public <T extends Animal> T getAnimal()` 
 makes no sense unless you pass something in the method - class or instance (see `getAnimal()` overloads).
+
+Sometimes you can just use plain `public Animal getAnimal();` and no generics. It can return Cat, no need of `extends`.
 
 `processExactlyWithHolderCallback` requires to use type T, but `processWildcardWithHolderCallback` overloads would 
  accept anything into callback.
@@ -91,7 +95,7 @@ makes no sense unless you pass something in the method - class or instance (see 
 `processExactlyWithCallback` does not compile but it's easy to see why - you can parametrize it with everything, for 
 example `Dog` so you can't use `Cat` inside (similar to alternative fruit in `EatableFruitHolder`).
 
-However I could not find the explanation why 
+First I could not find the explanation why
         
         public void processWildcardWithCallback(Callback<? super Animal> callback)
 
@@ -99,7 +103,19 @@ compiles and
 
         public <T super Animal> void processExactSuperWithCallback(Callback<T> callback) {
         
-does not. Can you?
+does not.
+
+Explanation is actually simple. Wildcard bounds and type bounds have different syntax. Types support multiple bounds
+but do not support `super`, while wildcards support `super` but do not support multiple bounds.
+
+Wildcards:
+
+        <? extends ClassOrInterface>
+        <? super ClassOrInteface>
+
+Types:
+
+        <T extends ClassOrInterface & InterfaceA & InterfaceB & InterfaceC>
 
 ## class handler
 

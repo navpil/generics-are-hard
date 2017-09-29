@@ -10,10 +10,11 @@ public class WildcardMethods {
     }
 
     private void test() {
-        //this works:
+        //this works, but see comments for the methods:
         processExactAnimal( getCatHolder() );
         processWildcardAnimal( getCatHolder() );
 
+        //Prefer type bounds to wildcard bounds
         Holder<? extends Animal> wildcardHolder = getWildcardHolder();
         //Error: incompatible types: ua.lviv.navpil.generics_are_hard.wildcards.Cat cannot be converted to capture#1 of ? extends ua.lviv.navpil.generics_are_hard.wildcards.Animal
 //        wildcardHolder.item = new Cat();
@@ -23,10 +24,11 @@ public class WildcardMethods {
         tHolder.item = new Cat();
         tHolder.item = new Animal();
 
+        //Prefer type bounds to wildcard bounds
         processWildcardWithHolderCallback( new Callback<Holder<? extends Animal>>() {
             @Override
             public void success(Holder<? extends Animal> holder) {
-
+                //can't parametrize it with dog
             }
         } );
 
@@ -40,12 +42,16 @@ public class WildcardMethods {
 
     }
 
+    //Both of the methods are fine, but <?> gives no guarantee of what the type is, while <T> gives such guarantee
     public <T extends Animal> void processExactAnimal(Holder<T> animal) {
         System.out.println("I'm processing the exact animal " + animal.item);
+        //legal: T == T
+        animal.item = animal.item;
     }
-
     public void processWildcardAnimal(Holder<? extends Animal> animal) {
         System.out.println("I'm processing the wildcard animal " + animal.item);
+        //illegal: <? extends Animal> != <? extends Animal>
+        //animal.item = animal.item;
     }
 
     public Holder<? extends Animal> getWildcardHolder() {
@@ -60,6 +66,7 @@ public class WildcardMethods {
 //    public <? extends Animal> getAnimal();
 //    public <? extends Animal> Animal getAnimal();
 
+    //Possible code, but doesn't bring us anywhere.
     public <T extends Animal> T getAnimal() throws IllegalAccessException, InstantiationException {
         //We can't instantiate T here
         T t = null;
@@ -72,23 +79,28 @@ public class WildcardMethods {
     }
 
     public <T extends Animal> T getAnimal(T animal) throws IllegalAccessException, InstantiationException {
-        //We can return same animal which is passed
+        //We can return same animal which is passed.
+        //Can be convenient because 'public Animal getAnimal(Animal a)' will return us Animal always, not an type of
+        // and object which was passed into method.
         return animal;
     }
 
-    public <T extends Animal> void processExactlyWithHolderCallback(Callback<Holder<T>> callback, T o) {
-        //Does not work - we parametrize with something, which does not need to be a cat
-//        callback.success( getCatHolder() );
-        callback.success( getHolder(o) );
+    //Makes more sense in the class:
+    public abstract class AnimalHolder<T extends Animal> {
+        public abstract T getAnimal();
     }
 
+    //Callback which can work with any Holder which contains any Animal. No exact parametrization
     public void processWildcardWithHolderCallback(Callback<Holder<? extends Animal>> callback) {
         callback.success( getCatHolder() );
         callback.success( getWildcardHolder() );
     }
 
-    public void processWildcardWithHolderCallback(Callback<Holder<? extends Animal>> callback, Holder<? extends Animal> holder) {
-        callback.success( holder );
+    //Should be parametrized with some kind of Animal.
+    public <T extends Animal> void processExactlyWithHolderCallback(Callback<Holder<T>> callback, T o) {
+        //Does not work - we parametrize with something, which does not need to be a cat
+//        callback.success( getCatHolder() );
+        callback.success( getHolder(o) );
     }
 
 ////This does not compile, because we can parametrize with anything, for example Dog.
@@ -105,6 +117,8 @@ public class WildcardMethods {
     //And this not
 //    public <T super Animal> void processExactSuperWithCallback(Callback<T> callback) {
 //    }
+
+    //Because while bound wildcards and bound types look similar, there are differences between them (see README)
 
 
     public Holder<Cat> getCatHolder() {
