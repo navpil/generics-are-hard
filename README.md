@@ -152,6 +152,6 @@ Do you know how `Recurring` generics look like and behave?
 
 You can parametrize with `Void` to avoid (see the pun?) putting any objects into the Holder.
 
-Isn't it fun that sometimes `XLintFails` to prevent you from ClassCastExceptions runtime?
+When `XLintFails` to prevent you from ClassCastExceptions you understand that generics are hard even for compiler.
 
 I don't quite understand why `SometimesInheritanceFails`.

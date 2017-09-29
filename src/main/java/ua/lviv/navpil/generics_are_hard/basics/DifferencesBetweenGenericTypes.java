@@ -82,7 +82,7 @@ public class DifferencesBetweenGenericTypes {
 //            comparables.get(0).compareTo(comparables.get(0));
             //Let's try captures, as with lists:
             //This capture won't work:
-//            compareToItself(comparables);
+//            compareFirstListElementToItself(comparables);
             //Neither does this:
 //            compareToItself(comparables.get(0));
             //How to compare Comparable<?> to itself? Is there a way?
@@ -108,18 +108,19 @@ public class DifferencesBetweenGenericTypes {
             rawComparables.add("");
             rawComparables.add(123L);
 
-            //This unchecked warning tells us something
+            //This unchecked warning wants to tell us something
             rawComparables.get(0).compareTo(2345L);
 
         }
 
         //NOT
-//        public static <T> void compareToItself(List<Comparable<T>> list) {
+//        public static <T> void compareFirstListElementToItself(List<Comparable<T>> list) {
 //            list.get(0).compareTo(list.get(0));
 //        }
 
         //But:
-        public static <T extends Comparable<T>> void compareToItself(List<T> list) {
+        public static <T extends Comparable<T>> void compareFirstListElementToItself(List<T> list) {
+            //noinspection EqualsWithItself
             list.get(0).compareTo(list.get(0));
         }
 
@@ -130,6 +131,7 @@ public class DifferencesBetweenGenericTypes {
 
         //But:
         public static <T extends Comparable<T>> void compareToItself(T comparable) {
+            //noinspection EqualsWithItself
             comparable.compareTo(comparable);
         }
 

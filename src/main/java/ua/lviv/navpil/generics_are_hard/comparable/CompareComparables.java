@@ -13,18 +13,20 @@ public class CompareComparables {
 
 
         //None of these compile, Why?
-//        compareToItself(comparables);
+//        compareFirstListElementToItself(comparables);
 //        compareToItself(comparables.get(0));
 
         //Well, because technically:
-        new Apple().compareTo(new Orange());
-        new Orange().compareTo(new Apple());
-        //You cant implement Comparable, so that you compare Apples to Oranges
+        Apple apple = new Apple();
+        Orange orange = new Orange();
 
+        apple.compareTo(orange);
+        orange.compareTo(apple);
+        //You can implement Comparable, so that you compare Apples to Oranges
         //That's why we can't assume that every comparable will be <T extends Comparable<T>>
 
         //won't compile
-//        compareToItself(new Apple());
+//        compareToItself(apple);
 
         //So what to do?
 
@@ -53,7 +55,7 @@ public class CompareComparables {
         comparableList.compareToItself(1);
 
         //Won't compile
-//        comparableList.add(new Orange())
+//        comparableList.add(orange)
 
 
     }
@@ -74,11 +76,11 @@ public class CompareComparables {
 
 
     //Won't compile
-//        public static <T> void compareToItself(List<Comparable<T>> list) {
+//        public static <T> void compareFirstListElementToItself(List<Comparable<T>> list) {
 //            list.get(0).compareTo(list.get(0));
 //        }
 
-    public static <T extends Comparable<T>> void compareToItself(List<T> list) {
+    public static <T extends Comparable<T>> void compareFirstListElementToItself(List<T> list) {
         list.get(0).compareTo(list.get(0));
     }
 
