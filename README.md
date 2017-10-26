@@ -2,8 +2,10 @@
 
 Some sample code with generics, which are hard. Explanation about each package can be found below.
 
-I also highly suggest reading [Java Generics Tutorial](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
-and section Generics in Effective Java by Joshua Bloch.
+I also highly suggest reading:
+ - [Java Generics Tutorial](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
+ - section _Generics_ in _Effective Java_ by Joshua Bloch.
+ - [Generics FAQ by Angelika Langer](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 
 ## basics
 
